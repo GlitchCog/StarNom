@@ -1,0 +1,28 @@
+<project>
+
+    <target name="clean">
+        <delete>
+            <fileset dir="bin" includes="**/*.class"/>
+            <fileset dir="jar" includes="**"/>
+        </delete>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="bin"/>
+        <javac srcdir="src/" destdir="bin" includeantruntime="false"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="jar"/>
+        <jar destfile="jar/StarNom.jar" basedir="bin">
+            <manifest>
+                <attribute name="Main-Class" value="com.glitchcog.starnom.StarNomMain"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="com.glitchcog.starnom.StarNomMain" fork="yes" classpath="bin"/>
+    </target>
+
+</project>
